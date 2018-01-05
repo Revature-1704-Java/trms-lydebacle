@@ -27,3 +27,23 @@ Presentations Table
 Submit Presentation Page
 -Only after a reimbursement is in green when supervisor, dept head, and benco have all approved then can the user submit a presentation
 for the reimbursement.
+
+Users
+
+Username - Alexandra 
+Password - Lai
+
+Regular employee.
+-------------------------------------------------------------
+Username - Cassie
+Password - hu
+
+Supervisor of Alexandra.
+----------------------------------------------------------------
+Username - Ming
+Password - Huang
+supervisor of Cassie and dept head
+----------------------------------------------------------------
+Username - BevCoSam
+Password - bc
+benco
