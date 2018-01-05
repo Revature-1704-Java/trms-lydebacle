@@ -64,7 +64,14 @@ public class WelcomePage extends HttpServlet {
 				"		<div class=\"login-box-wrapper\"> \r\n" + 
 				"			<div class=\"expense-box\">\r\n" + 
 				"				<div id=\"expense-input\">\r\n" + 
-				"					<h2 style=\"float:left\" class=\"welcome\"> Expense Reimbursements</h2> <button style=\"float:right\"><a class=\"submitReimburse\" href=\"ReimbursementForm\">Submit A Reimbursement</a></button>\r\n" + 
+				"					<h2 style=\"float:left\" class=\"welcome\"> Expense Reimbursements</h2> <button style=\"float:right\"><a class=\"submitReimburse\" href=\"ReimbursementForm\">Submit A Reimbursement</a></button>\r\n"+
+				"					<button style=\"float:right\"><a class=\"submitReimburse\" href=\"Websites\">Logout!</a></button>\r\n");  
+				if(emp.getEmployeeType() == 3 || emp.getEmployeeType() == 2 || emp.getEmployeeType() == 1 || emp.getEmployeeType() == 4) {
+					out.println("<form style=\"float:right\" method=\"post\" action=\"PresentationPage\">\r\n" + 
+							"	<input type=\"submit\" value=\"Presentations\"> \r\n" + 
+							"</form>");
+				}
+		out.println(
 				"					<table class=\"table\">\r\n" + 
 				"						<thead class=\"thead-light\">\r\n" + 
 				"							<tr>\r\n" + 
@@ -129,19 +136,46 @@ public class WelcomePage extends HttpServlet {
 					"								<td id="+rb.getRID()+"-sD>"+rb.getDate()+"</td>\r\n" +
 					"								<td id="+rb.getRID()+"-cSD>"+rb.getCourseStartDate()+"</td>\r\n");
 			String email = UpdateReimbursementDAO.sendEmail(Integer.toString(rb.getRID()));
-			out.println(
-					"								<td><a class=\"emailbutton\" href=mailto:"+email+">Send Email</a></td>\r\n");
-			if(!rb.getStatus().equals("Rejected")) {
-				if((emp.getEmployeeType() == 2 && rb.getDsapproval() == 0) || (emp.getEmployeeType() == 4 && rb.getDhapproval() == 0) || (emp.getEmployeeType() == 4 && rb.getDsapproval() == 0) || (emp.getEmployeeType() == 5 && rb.getDhapproval() == 0) || (emp.getEmployeeType() == 3 && rb.getBcapproval() == 0) ) {
+			System.out.println(emp.getFirstname());
+			System.out.println(rb.getFirstname());
+			if(!(emp.getFirstname().equals(rb.getFirstname())) ) {
+				out.println(
+						"								<td><a class=\"emailbutton\" href=mailto:"+email+"><button>Send Email</button></a></td>\r\n");
+			}
+			if(!(rb.getStatus().equals("Rejected"))) {
+				if(emp.getEmployeeType() == 3) {
+					out.append("<td>\r\n" + 
+							"							<form action=\"Proj1Controller\" method=\"get\">\r\n" + 
+							"								<input type=\"text\" name=\"amount\" placeholder=\"amount\">\r\n" + 
+							"								<input type=\"hidden\" name=\"altid\" value="+Integer.toString(rb.getRID())+">\r\n" + 
+							" 								<input class=\"alterbutton\" type=\"submit\" value=\"Alter Amount\">\r\n" + 
+							" 							</form>\r\n" + 
+							" 						</td>"
+							);
+				}
+				if(emp.getFirstname().equals(rb.getFirstname()) && emp.getLastname().equals(rb.getLastname())) {
+					out.append(
+						"								<td><a class=\"rejectbutton\" href=Proj1Controller?canid="+Integer.toString(rb.getRID())+"> <button>Cancel! </button></a></td>\r\n"
+						);
+					if(rb.getDsapproval() == 1 && rb.getDhapproval() == 1 && rb.getBcapproval() == 1) {
 						out.append(
-						"								<td><a class=\"acceptbutton\" href=Proj1Controller?acid="+Integer.toString(rb.getRID())+"> <button>Approve!</button></a></td>\r\n" + 
-						"								<td><a class=\"rejectbutton\" href=Proj1Controller?rjid="+Integer.toString(rb.getRID())+"> <button>Reject! </button></a></td>\r\n" + 
-						"								\r\n");
+								"								<td><a href=PresentationForm?prid="+Integer.toString(rb.getRID())+"> <button>Submit Presentation! </button></a></td>\r\n"
+								);
 					}
-				out.append("							</tr>\r\n");
+				}
+				if(!(emp.getFirstname().equals(rb.getFirstname()))) {
+					if((emp.getEmployeeType() == 2 && rb.getDsapproval() == 0) || (emp.getEmployeeType() == 4 && rb.getDhapproval() == 0) || (emp.getEmployeeType() == 4 && rb.getDsapproval() == 0) || (emp.getEmployeeType() == 5 && rb.getDhapproval() == 0) || (emp.getEmployeeType() == 3 && rb.getBcapproval() == 0) ) {
+							out.append(
+							"								<td><a class=\"acceptbutton\" href=Proj1Controller?acid="+Integer.toString(rb.getRID())+"> <button>Approve!</button></a></td>\r\n" + 
+							"								<td><a class=\"rejectbutton\" href=Proj1Controller?rjid="+Integer.toString(rb.getRID())+"> <button>Reject! </button></a></td>\r\n" + 
+							"								\r\n");
+						}
+					
+					//out.append("							</tr>\r\n");
+				}
 			}
 			
-			
+			out.append("							</tr>\r\n");
 		}
 		out.append("						</tbody>\r\n" + 
 				"					</table>\r\n" + 
@@ -235,6 +269,7 @@ public class WelcomePage extends HttpServlet {
 		    	
 		    }
 		    rs = ps.executeQuery();
+		    
 			while(rs.next()) {
 				LocalDateTime RbDateTime = LocalDateTime.parse(rs.getString(6).substring(0, 19), formatter);
 				long diffInSeconds = ChronoUnit.SECONDS.between(presentTime, RbDateTime);

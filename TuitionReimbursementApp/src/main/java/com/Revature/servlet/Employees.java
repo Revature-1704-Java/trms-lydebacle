@@ -5,6 +5,14 @@ import java.util.ArrayList;
 public class Employees {
 	private String username;
 	private ArrayList<Reimbursements> listOfReimbursements = new ArrayList<Reimbursements>();
+	private ArrayList<Presentations> listOfPresentations = new ArrayList<Presentations>();
+	public ArrayList<Presentations> getListOfPresentations() {
+		return listOfPresentations;
+	}
+	public void setListOfPresentations(ArrayList<Presentations> listOfPresentations) {
+		this.listOfPresentations = listOfPresentations;
+	}
+
 	private String firstname;
 	private String lastname;
 	private int employeeType;

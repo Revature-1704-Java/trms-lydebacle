@@ -50,6 +50,20 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 		<servlet-name>ValidatePopUp</servlet-name>
 		<servlet-class>com.Revature.servlet.ValidatePopUp</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>PresentationPage</display-name>
+		<servlet-name>PresentationPage</servlet-name>
+		<servlet-class>com.Revature.servlet.PresentationPage</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>PresentationForm</display-name>
+		<servlet-name>PresentationForm</servlet-name>
+		<servlet-class>com.Revature.servlet.PresentationForm</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Website</servlet-name>
 		<url-pattern>/website</url-pattern>
@@ -77,6 +91,14 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<servlet-mapping>
 		<servlet-name>ValidatePopUp</servlet-name>
 		<url-pattern>/ValidatePopUp</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PresentationPage</servlet-name>
+		<url-pattern>/PresentationPage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PresentationForm</servlet-name>
+		<url-pattern>/PresentationForm</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>Websites</welcome-file>

@@ -156,6 +156,8 @@ public class Reimbursements {
 					break;
 			case 2: status="Rejected";
 					break;
+			case 3: status="Cancelled";
+					break;
 		}
 	}
 	public Reimbursements() {
