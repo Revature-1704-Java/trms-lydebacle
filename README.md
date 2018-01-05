@@ -9,6 +9,7 @@ Expense Reimbursement Table
 -displays all the reimbursements the user has submitted
 -displays all the reimbursements the user directly supervises, or is the dept head of and hasn't approved yet
 -if benco, displays all the reimbursements benco has not approved
+-only benco can alter reimbursement cost
 -green row highlight - supervisor, dept head, and benco have all approved.
 -yellow row highlight - warning that course start is within 2 weeks
 -red row highlight - reimbursement is rejected by one of the supervisors (direct supervisors, dept head, or benco)
