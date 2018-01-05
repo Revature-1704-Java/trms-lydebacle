@@ -31,19 +31,28 @@ for the reimbursement.
 # Users
 
 Username - Alexandra
+
 Password - Lai
 
 Regular employee.
 
+
 Username - Cassie
+
 Password - hu
 
 Supervisor of Alexandra.
 
+
 Username - Ming
+
 Password - Huang
+
 supervisor of Cassie and dept head
 
+
 Username - BevCoSam
+
 Password - bc
+
 benco
